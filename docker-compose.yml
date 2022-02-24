@@ -83,6 +83,16 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
+    ngrok:
+        image: wernight/ngrok
+        networks:
+            - sail
+        ports:
+            - "4040:4040"
+        environment:
+            NGROK_AUTH: ${NGROK_AUTH_TOKEN}
+            NGROK_PROTOCOL: http
+            NGROK_PORT: laravel.test:80
 networks:
     sail:
         driver: bridge
